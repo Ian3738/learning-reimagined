@@ -56,7 +56,7 @@
   document.body.appendChild(lb);
 
   var tr = el('div', 'transition'); tr.id = 'transition'; tr.setAttribute('aria-hidden', 'true');
-  tr.innerHTML = '<div class="transition__mark"><span class="seal">翻</span><span>知識翻新</span></div>';
+  tr.innerHTML = '<div class="transition__mark"><span class="seal">築</span><span>築知</span></div>';
   document.body.appendChild(tr);
 
   /* ── 導覽列捲動狀態 + 進度條 ── */
@@ -151,7 +151,7 @@
     var i = WORKS.map(function(w){ return w.id; }).indexOf(id);
     if (i < 0) i = 0;
     var w = WORKS[i];
-    document.title = w.title + ' ｜ 知識翻新 Knowledge Building';
+    document.title = w.title + ' ｜ 築知 Knowledge Building';
     mount.innerHTML =
       '<div class="work__media" data-reveal><div class="artwork artwork--zoom" id="workPoster" tabindex="0" role="button" aria-label="放大檢視海報">' +
         '<div class="frame"><div class="mat"><div class="canvas"><img src="' + poster(w.id) + '" alt="' + w.title + ' 海報"></div></div></div>' +

@@ -1,4 +1,4 @@
-# 知識翻新 · Knowledge Building
+# 築知 · Knowledge Building
 
 國立清華大學 教育與學習科技學系｜科技融入教學創新 期末成果展（美術館／畫廊風格・多頁式網站）。
 
