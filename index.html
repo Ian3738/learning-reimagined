@@ -318,48 +318,61 @@ button{ font:inherit; color:inherit; background:none; border:none; cursor:pointe
 .room-divider__rn{ font-family:var(--label); letter-spacing:.32em; font-size:.74rem; color:var(--cinnabar); text-transform:uppercase; }
 
 /* ════════════════════════════════════════════════════
-   展場紀實 / 沉浸式長廊（GSAP 橫向捲動）
+   展場紀實 / 膠卷放映廳（電影感橫向長廊）
    ════════════════════════════════════════════════════ */
-.corridor{ position:relative; z-index:2; }
-.corridor__intro{ text-align:center; padding-block:clamp(5rem,10vh,9rem) clamp(1.5rem,4vh,3rem); }
-.docu__count{ font-family:var(--display); font-style:italic; color:var(--ink-faint); font-size:clamp(1rem,2vw,1.4rem); margin-top:.6rem; }
+.reel{ position:relative; z-index:2; background:#16120c; color:var(--paper); }
+.reel::before{ content:""; position:absolute; top:0; left:0; right:0; height:20vh; z-index:0; pointer-events:none;
+  background:linear-gradient(var(--paper), #16120c); }
+.reel__intro{ position:relative; z-index:2; text-align:center; padding-block:clamp(8rem,20vh,13rem) clamp(2rem,5vh,4rem); }
+.reel__intro .eyebrow{ color:#e2a877; }
+.reel__intro .eyebrow::before, .reel__intro .eyebrow::after{ background:#e2a877; opacity:.7; }
+.reel__intro .sec-head__zh{ color:var(--paper); }
+.docu__count{ font-family:var(--display); font-style:italic; color:rgba(244,239,230,.5); font-size:clamp(1rem,2vw,1.4rem); margin-top:.6rem; }
 
-.corridor__viewport{ position:relative; height:100vh; overflow:hidden; }
-.corridor__scroller{ height:100%; overflow:hidden; display:flex; align-items:center; }
-.corridor.is-fallback .corridor__scroller{ overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; }
-.corridor.is-fallback .corridor__scroller::-webkit-scrollbar{ height:6px; }
-.corridor.is-fallback .corridor__scroller::-webkit-scrollbar-thumb{ background:#c5bba8; border-radius:10px; }
-.corridor__track{
-  display:grid; grid-auto-flow:column; grid-template-rows:repeat(3,1fr);
-  justify-items:center; align-items:center;
-  gap:clamp(.7rem,1.5vw,1.4rem); height:74vh; padding-inline:max(9vw,3rem); will-change:transform;
-}
-/* 統一尺寸的裱框照片：cover 裁切，使長廊寬度可即時計算、不依賴圖片載入 */
-.corridor .print{ height:100%; width:clamp(155px,27vh,240px); margin:0; }
-.corridor .print img{ width:100%; height:100%; object-fit:cover; }
-.corridor .print:nth-child(3n+1){ align-self:start; }
-.corridor .print:nth-child(3n+2){ align-self:center; }
-.corridor .print:nth-child(3n){ align-self:end; }
+.reel__stage{ position:relative; height:100vh; overflow:hidden; display:flex; flex-direction:column; justify-content:center; }
+.reel__stage::before{ content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:
+    radial-gradient(75% 50% at 50% 44%, rgba(255,226,176,.10), transparent 62%),
+    radial-gradient(125% 120% at 50% 50%, transparent 50%, rgba(0,0,0,.72) 100%); }
+.reel__stage::after{ content:""; position:absolute; inset:0; z-index:6; pointer-events:none; opacity:.06; mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 
-/* 邊緣聚焦暈影 + HUD */
-.corridor__vignette{ position:absolute; inset:0; z-index:5; pointer-events:none;
-  background:linear-gradient(90deg, var(--paper) 0%, rgba(244,239,230,0) 9%, rgba(244,239,230,0) 91%, var(--paper) 100%); }
-.corridor__label{ position:absolute; top:clamp(1.2rem,4vh,2.4rem); left:clamp(1.4rem,5vw,3rem); z-index:6; pointer-events:none; }
-.corridor__hud{ position:absolute; left:0; right:0; bottom:clamp(1.4rem,4vh,2.6rem); z-index:6; display:flex; flex-direction:column; align-items:center; gap:.9rem; pointer-events:none; }
-.corridor__hint{ font-family:var(--label); font-size:.64rem; letter-spacing:.3em; text-transform:uppercase; color:var(--ink-faint); }
-.corridor__bar{ width:min(42vw,320px); height:2px; background:var(--line); position:relative; overflow:hidden; }
-.corridor__bar i{ position:absolute; left:0; top:0; height:100%; width:8%; background:var(--cinnabar); }
+.reel__rows{ position:relative; z-index:2; display:flex; flex-direction:column; gap:clamp(.6rem,1.4vh,1.3rem); }
+.reel__strip{ display:flex; align-items:center; gap:clamp(.7rem,1.5vw,1.4rem); height:clamp(140px,21vh,240px); padding-inline:50vw; will-change:transform; }
+.reel__strip:nth-child(2){ height:clamp(155px,24vh,270px); }
 
-/* 共用：裱框照片 */
-.print{ display:block; background:#fcf9f3; padding:7px; border:1px solid rgba(0,0,0,.1);
-  box-shadow:0 1px 2px rgba(0,0,0,.08), 0 14px 24px -18px rgba(40,28,16,.45);
-  transition:transform .5s var(--ease), box-shadow .5s var(--ease); cursor:zoom-in; position:relative; }
-.print::after{ content:attr(data-no); position:absolute; right:10px; bottom:10px;
-  font-family:var(--label); font-size:.56rem; letter-spacing:.14em; color:#fff;
-  background:rgba(29,27,23,.55); padding:.25em .6em; border-radius:20px;
-  opacity:0; transition:opacity .4s var(--ease); backdrop-filter:blur(3px); }
-.print:hover{ transform:translateY(-6px); box-shadow:0 2px 4px rgba(0,0,0,.1), 0 28px 44px -22px rgba(40,28,16,.6); z-index:4; }
-.print:hover::after{ opacity:1; }
+.cell{ position:relative; height:100%; flex:none; padding:0; cursor:zoom-in; background:#000;
+  border:1px solid rgba(244,239,230,.16); box-shadow:0 20px 44px -20px rgba(0,0,0,.85);
+  transform-origin:center center; will-change:transform,opacity; }
+.cell img{ display:block; height:100%; width:auto; max-width:none; }
+.cell::after{ content:attr(data-no); position:absolute; left:7px; bottom:6px; z-index:2;
+  font-family:var(--label); font-size:.5rem; letter-spacing:.12em; color:rgba(244,239,230,.85);
+  background:rgba(0,0,0,.45); padding:.2em .5em; opacity:0; transition:opacity .35s; }
+.cell:hover::after{ opacity:1; }
+
+/* 齒孔（會隨膠卷移動） */
+.reel__perf{ position:absolute; left:-2vw; right:-2vw; height:clamp(16px,2.3vh,24px); z-index:5; pointer-events:none;
+  background:linear-gradient(#0e0b07,#060402); box-shadow:0 0 18px rgba(0,0,0,.6); overflow:hidden; }
+.reel__perf i{ position:absolute; inset:0;
+  background-image:radial-gradient(circle, rgba(244,239,230,.5) 0 26%, transparent 30%);
+  background-size:28px 100%; background-position:0 50%; background-repeat:repeat-x; }
+.reel__perf--top{ top:0; }
+.reel__perf--bottom{ bottom:0; }
+
+/* HUD */
+.reel__hud{ position:absolute; left:0; right:0; bottom:clamp(2rem,5vh,3.4rem); z-index:7; display:flex; flex-direction:column; align-items:center; gap:.7rem; pointer-events:none; }
+.reel__now{ font-family:var(--label); font-size:.62rem; letter-spacing:.34em; text-transform:uppercase; color:#e2a877; display:inline-flex; align-items:center; gap:.7em; }
+.reel__now::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--cinnabar); box-shadow:0 0 8px var(--cinnabar); animation:pulse 1.8s ease-in-out infinite; }
+@keyframes pulse{ 0%,100%{opacity:1} 50%{opacity:.25} }
+.reel__counter{ font-family:var(--display); font-style:italic; font-size:clamp(1.1rem,2.2vw,1.6rem); color:var(--paper); letter-spacing:.04em; }
+.reel__bar{ width:min(40vw,300px); height:2px; background:rgba(244,239,230,.18); position:relative; overflow:hidden; }
+.reel__bar i{ position:absolute; left:0; top:0; height:100%; width:6%; background:var(--cinnabar); }
+
+/* fallback：無 GSAP / 減少動態 → 可橫向捲動 */
+.reel.is-fallback .reel__stage{ height:auto; overflow-x:auto; padding-block:4vh; }
+.reel.is-fallback .reel__strip{ padding-inline:5vw; }
+.reel.is-fallback .cell{ opacity:1 !important; transform:none !important; }
+.reel.is-fallback .reel__perf{ display:none; }
 
 /* ════════════════════════════════════════════════════
    燈箱
@@ -643,22 +656,21 @@ button{ font:inherit; color:inherit; background:none; border:none; cursor:pointe
 
 </main>
 
-<!-- ═══════════ 展場紀實 · 沉浸式長廊 ═══════════ -->
-<section class="corridor" id="documentation">
-  <div class="section corridor__intro" data-reveal>
+<!-- ═══════════ 展場紀實 · 膠卷放映廳 ═══════════ -->
+<section class="reel" id="documentation">
+  <div class="section reel__intro" data-reveal>
     <p class="eyebrow eyebrow--center">第三展區 · Documentation</p>
     <h2 class="sec-head__zh">展場紀實</h2>
-    <p class="docu__count">六十五幀 · 沿牆而行，閱覽展出當日現場</p>
+    <p class="docu__count">六十五幀 · 一卷關於展出當日的膠片</p>
   </div>
-  <div class="corridor__viewport">
-    <div class="corridor__scroller">
-      <div class="corridor__track" id="photoTrack"><!-- 由 JS 生成 --></div>
-    </div>
-    <div class="corridor__vignette" aria-hidden="true"></div>
-    <div class="corridor__label"><span class="eyebrow">展場紀實 · 六十五幀</span></div>
-    <div class="corridor__hud" aria-hidden="true">
-      <span class="corridor__hint">捲動前行 · Walk the corridor →</span>
-      <span class="corridor__bar"><i id="corridorBar"></i></span>
+  <div class="reel__stage">
+    <div class="reel__perf reel__perf--top" aria-hidden="true"><i></i></div>
+    <div class="reel__rows" id="reelRows"><!-- 由 JS 生成三條膠卷 --></div>
+    <div class="reel__perf reel__perf--bottom" aria-hidden="true"><i></i></div>
+    <div class="reel__hud" aria-hidden="true">
+      <span class="reel__now">正在放映 · Now Showing</span>
+      <span class="reel__counter" id="reelCounter">01 / 65</span>
+      <span class="reel__bar"><i id="reelBar"></i></span>
     </div>
   </div>
 </section>
@@ -713,6 +725,8 @@ button{ font:inherit; color:inherit; background:none; border:none; cursor:pointe
 <!-- GSAP（2025 起完全免費，含所有外掛） -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<!-- Lenis：平滑慣性捲動 -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script>
 /* ── 導覽列 + 進度條 ── */
 const nav = document.getElementById('nav');
@@ -749,31 +763,37 @@ const POSTERS = {
 };
 const POSTER_ORDER = ['g1','g3','g4','g5','g8','g6'];
 
-/* ── 建立長廊照片 ── */
-const photoTrack = document.getElementById('photoTrack');
-const frag = document.createDocumentFragment();
+/* ── 建立三條膠卷（65 張分配其上） ── */
+const reelRows = document.getElementById('reelRows');
+const STRIP_N = 3;
+const stripEls = [];
+for (let s = 0; s < STRIP_N; s++){
+  const st = document.createElement('div');
+  st.className = 'reel__strip';
+  reelRows.appendChild(st);
+  stripEls.push(st);
+}
 PHOTOS.forEach((name, i) => {
-  const b = document.createElement('button');
-  b.className = 'print';
-  b.type = 'button';
-  b.setAttribute('data-no', String(i + 1).padStart(2, '0') + ' / ' + PHOTOS.length);
-  b.setAttribute('aria-label', '放大檢視 現場紀實 第 ' + (i + 1) + ' 張');
+  const cell = document.createElement('button');
+  cell.className = 'cell';
+  cell.type = 'button';
+  cell.setAttribute('data-no', String(i + 1).padStart(2, '0') + ' / ' + PHOTOS.length);
+  cell.setAttribute('aria-label', '放大檢視 現場紀實 第 ' + (i + 1) + ' 張');
   const img = document.createElement('img');
   img.src = 'assets/photos/thumb/' + name + '.jpg';
   img.alt = '展場現場紀實 ' + (i + 1);
   img.loading = 'eager';
   img.decoding = 'async';
-  b.appendChild(img);
-  b.addEventListener('click', () => openLightbox('photo', i));
-  frag.appendChild(b);
+  cell.appendChild(img);
+  cell.addEventListener('click', () => openLightbox('photo', i));
+  stripEls[i % STRIP_N].appendChild(cell);
 });
-photoTrack.appendChild(frag);
 
 /* ── 燈箱 ── */
 const lb = document.getElementById('lightbox');
 const lbImg = document.getElementById('lbImg');
 const lbCap = document.getElementById('lbCap');
-let mode = 'photo', idx = 0;
+let mode = 'photo', idx = 0, lenis = null;
 
 function render(){
   if (mode === 'photo'){
@@ -793,10 +813,12 @@ function openLightbox(m, i){
   mode = m; idx = i; render();
   lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
   document.body.style.overflow = 'hidden';
+  if (lenis) lenis.stop();
 }
 function closeLightbox(){
   lb.classList.remove('open'); lb.setAttribute('aria-hidden','true');
   document.body.style.overflow = '';
+  if (lenis) lenis.start();
 }
 function step(d){
   const len = (mode === 'photo') ? PHOTOS.length : POSTER_ORDER.length;
@@ -820,36 +842,88 @@ document.querySelectorAll('[data-poster]').forEach((el) => {
   el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(); } });
 });
 
-/* ── 沉浸式長廊（GSAP ScrollTrigger 橫向捲動） ── */
-function initCorridor(){
-  const section  = document.getElementById('documentation');
-  const viewport = section.querySelector('.corridor__viewport');
-  const track    = document.getElementById('photoTrack');
-  const bar      = document.getElementById('corridorBar');
-  const reduce   = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // 無 GSAP 或使用者偏好減少動態 → 退回原生橫向捲動
-  if (reduce || !window.gsap || !window.ScrollTrigger){ section.classList.add('is-fallback'); return; }
-
-  gsap.registerPlugin(ScrollTrigger);
-  const dist = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
-  gsap.to(track, {
-    x: () => -dist(),
-    ease: 'none',
-    scrollTrigger: {
-      trigger: viewport,
-      start: 'top top',
-      end: () => '+=' + dist(),
-      scrub: 0.6,
-      pin: true,
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-      onUpdate: (self) => { if (bar) bar.style.width = (8 + self.progress * 92) + '%'; }
-    }
+/* ── 平滑慣性捲動（Lenis） ── */
+function initSmoothScroll(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !window.Lenis) return;
+  lenis = new Lenis({ lerp: 0.085, smoothWheel: true, wheelMultiplier: 1 });
+  lenis.on('scroll', () => { if (window.ScrollTrigger) ScrollTrigger.update(); });
+  if (window.gsap){ gsap.ticker.add((t) => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0); }
+  else { const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); }; requestAnimationFrame(raf); }
+  // 錨點導覽改用 Lenis 平滑捲動
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t){ e.preventDefault(); lenis.scrollTo(t, { offset: -4 }); }
+    });
   });
-  window.addEventListener('load', () => ScrollTrigger.refresh());
 }
-initCorridor();
+
+/* ── 等待圖片載入 ── */
+function imagesReady(root, cb){
+  const imgs = Array.prototype.slice.call(root.querySelectorAll('img'));
+  let n = imgs.filter((i) => !i.complete).length;
+  if (!n){ cb(); return; }
+  const done = () => { if (--n <= 0) cb(); };
+  imgs.forEach((i) => { if (!i.complete){ i.addEventListener('load', done); i.addEventListener('error', done); } });
+}
+
+/* ── 膠卷放映廳：景深視差 + 中央聚焦 + 齒孔移動（GSAP ScrollTrigger 釘住） ── */
+function initReel(){
+  const section = document.getElementById('documentation');
+  const stage   = section.querySelector('.reel__stage');
+  const perfs   = section.querySelectorAll('.reel__perf i');
+  const bar     = document.getElementById('reelBar');
+  const counter = document.getElementById('reelCounter');
+  const reduce  = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 無 GSAP / 減少動態 → 退回可橫向捲動
+  if (reduce || !window.gsap || !window.ScrollTrigger){ section.classList.add('is-fallback'); return; }
+  gsap.registerPlugin(ScrollTrigger);
+
+  let dists = [], maxDist = 1, cells = [];
+  function measure(){
+    const vw = window.innerWidth;
+    dists = stripEls.map((st) => Math.max(0, st.scrollWidth - vw));
+    maxDist = Math.max(1, Math.max.apply(null, dists));
+    cells = [];
+    stripEls.forEach((st, si) => {
+      Array.prototype.forEach.call(st.children, (el) => {
+        cells.push({ el: el, si: si, c: el.offsetLeft + el.offsetWidth / 2, no: el.getAttribute('data-no') });
+      });
+    });
+  }
+  function layout(p){
+    const center = window.innerWidth / 2;
+    const sx = dists.map((d) => -p * d);
+    stripEls.forEach((st, si) => { st.style.transform = 'translate3d(' + sx[si].toFixed(1) + 'px,0,0)'; });
+    let best = 2, bestNo = null;
+    for (let k = 0; k < cells.length; k++){
+      const o = cells[k];
+      const cx = sx[o.si] + o.c;
+      const nd = Math.min(1, Math.abs(cx - center) / (center * 1.05));
+      o.el.style.transform = 'scale(' + (1 - nd * 0.18).toFixed(3) + ')';
+      o.el.style.opacity = (1 - nd * 0.62).toFixed(3);
+      if (nd < best){ best = nd; bestNo = o.no; }
+    }
+    const shift = (-p * maxDist * 0.5).toFixed(1) + 'px';
+    for (let j = 0; j < perfs.length; j++){ perfs[j].style.backgroundPositionX = shift; }
+    if (bar) bar.style.width = (6 + p * 94) + '%';
+    if (counter && bestNo) counter.textContent = bestNo;
+  }
+  measure();
+  ScrollTrigger.create({
+    trigger: stage, start: 'top top', end: () => '+=' + maxDist,
+    pin: true, anticipatePin: 1, invalidateOnRefresh: true,
+    onRefresh: measure,
+    onUpdate: (self) => layout(self.progress)
+  });
+  layout(0);
+  imagesReady(stage, () => { measure(); ScrollTrigger.refresh(); layout(0); });
+  window.addEventListener('load', () => { measure(); ScrollTrigger.refresh(); });
+}
+
+initSmoothScroll();
+initReel();
 </script>
 </body>
 </html>
