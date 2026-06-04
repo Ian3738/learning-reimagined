@@ -1,18 +1,22 @@
-# 寓教於遊 · 科技融入教學創新 期末成果展
+# 知識翻新 · Knowledge Building
 
-國立清華大學 教育與學習科技學系｜學生專題成果展示網站（美術館／畫廊風格）。
+國立清華大學 教育與學習科技學系｜科技融入教學創新 期末成果展（美術館／畫廊風格・多頁式網站）。
 
-- **專題作品**：五組以「遊戲化 × 生成式 AI」打造的教學專題海報
-- **展場紀實**：展出當日現場照片，以 GSAP 製作沉浸式橫向長廊
-- **可點擊放大**：海報與照片皆可開啟燈箱檢視
+## 頁面
 
-## 技術
+- `index.html` — 首頁（主視覺＋站內導覽）
+- `about.html` — 關於／策展前言（知識翻新理念）
+- `works.html` — 專題作品總覽（六件）
+- `work.html?id=g1…g8,g6` — 各作品專頁（含上一件／下一件導覽）
+- `gallery.html` — 展場紀實（GSAP 膠卷放映廳・65 幀）
+- `visit.html` — 參觀資訊
 
-純靜態網站，無需建置：
+## 共用檔
 
-- `index.html` — 單一檔案（HTML / CSS / JS）
-- `assets/` — 最佳化後的海報與照片
-- 動畫：[GSAP](https://gsap.com/) ScrollTrigger（CDN）
-- 字型：Google Fonts（Noto Serif TC、Cormorant Garamond、Jost）
+- `styles.css` — 共用樣式（設計系統）
+- `app.js` — 共用資料（作品／照片）、導覽列、燈箱、頁面轉場、各頁渲染
+- 動畫：[GSAP](https://gsap.com/) ScrollTrigger ＋ [Lenis](https://lenis.darkroom.engineering/) 平滑捲動（CDN）
+- 字型：Google Fonts（霞鶩文楷 TC、Cormorant Garamond、Jost）
+- 圖片：`assets/`（海報與照片，已最佳化）
 
-以 GitHub Pages 部署。設有 `noindex`，不會被搜尋引擎索引。
+純靜態，無需建置。以 GitHub Pages 部署，設有 `noindex`（不被搜尋引擎索引）。
