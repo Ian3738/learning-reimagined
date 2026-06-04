@@ -10,22 +10,46 @@
   var WORKS = [
     { id:'g1', no:'01', title:'海廢大偵探：追蹤消失的塑膠足跡', en:'The Marine Debris Detective',
       team:'楊紫琇、高子媗', domain:'海洋環境教育', tech:'2D RPG ・ Scanner 2.0 AR 辨識',
-      desc:'以 2D RPG 校園地圖出發，讓學生在遊戲中追蹤排入海洋的五大類廢棄物；結合 Scanner 2.0 虛擬辨識互動，把看不見的水文網絡視覺化，將「被動學習」轉化為「主動解謎」。' },
+      quote:'把看不見的足跡，一一找回來。',
+      lead:'《海廢大偵探》是一款以校園為地圖的 2D RPG。學生化身偵探，在熟悉的角落中循線追蹤那些「消失」於日常、最終排入海洋的塑膠足跡，並一一辨識流入海洋的五大類廢棄物。',
+      problem:'海洋廢棄物對學生而言常是「遙遠而無感」的議題——知道海裡有垃圾，卻覺得與自己無關、也無力改變。如何讓抽象的環境數據，變成學生願意主動追查的線索？',
+      approach:'團隊以 Mayer 多媒體學習與情境學習理論為基礎，把知識藏進探索與解謎；並開發 Scanner 2.0 虛擬辨識互動，讓玩家「掃描」物件、即時辨認材質與去向，把看不見的水文與排放網絡視覺化，更串接 Earth Nullschool 全球洋流平台，將校園與真實海洋連起來。',
+      building:'它把學生從「被動知道」推向「主動調查」——觀察、提出假設、蒐證、再得出結論。海廢不再是課本上的結論，而是一份可被探究、討論、持續補完的線索；學生因此成為環境知識的建構者，而非接收者。' },
     { id:'g3', no:'02', title:'懂吃懂吃：我們是營養特攻隊', en:'The Nutrition Squad',
       team:'白宇安、陳奕安', domain:'營養教育', tech:'RPG 遊戲 ・ AI 教學影片（ADDIE）',
-      desc:'以 RPG 遊戲與 AI 教學影片，依 ADDIE 模式打造五段式故事弧線（Hook→Explore→Build→Apply→Reflect），讓營養學從紙上走進生活，培養學生的營養辨讀與決策能力。' },
+      quote:'看得懂字，更要會選。',
+      lead:'《懂吃懂吃：我們是營養特攻隊》結合 RPG 遊戲與 AI 教學影片，讓營養知識從紙上的標示，走進學生每天的餐桌選擇。',
+      problem:'營養標示對中小學生而言過於抽象，難以連結到真實的飲食決策；傳統宣導生硬、難以內化，學生往往「看得懂字，卻不會選」。',
+      approach:'團隊以 ADDIE（分析—設計—開發—實施—評鑑）系統化設計課程，並把學習歷程編成五段式故事弧線：HOOK 暖身、EXPLORE 探索、BUILD 建構、APPLY 應用、REFLECT 反思——讓學生在任務中蒐集、比較、統整營養資訊，最後實際做出選擇並回顧修正。',
+      building:'五段弧線中的「BUILD（建構）」與「REFLECT（反思）」正是築知的縮影：學生不是背下標準答案，而是把零碎資訊組裝成可用的判斷，再透過回顧不斷優化——讓營養知識在一次次決策中被親手蓋起來。' },
     { id:'g4', no:'03', title:'聲音守護者：一「鄉」情願，「音」為有你', en:'Guardians of Sound',
-      team:'王浩宇、王若馨', domain:'文化記憶 ・ 聲音採集', tech:'HTML5 Canvas 2.5D ・ Gemini API',
-      desc:'一款 2.5D 聲音採集遊戲，玩家操控「小音」在失落的文化村落中錄音、解謎；以 Gemini API 將聲音轉譯為有溫度的地方故事，重建 1970 年代的城市記憶，以學習體驗設計（LXD）為核心。' },
+      team:'王浩宇、王若馨', domain:'文化記憶 ・ 聲音採集', tech:'HTML5 Canvas 2.5D ・ Gemini API ・ LXD',
+      quote:'每一種聲音，都是一段等待被聽見的記憶。',
+      lead:'《聲音守護者》是一款以學習體驗設計（LXD）為核心的 2.5D 探索遊戲。玩家操控「小音」，在一座失落的文化村落裡採集聲音、循著聲線尋回被遺忘的地方記憶。',
+      problem:'地方文化與在地歷史，往往以單向講述的方式被「告知」，學生難以產生情感連結。如何讓一段聲音、一處場景，重新成為值得親近與守護的記憶？',
+      approach:'遊戲以 HTML5 Canvas 打造 2.5D 場景，並以 Gemini API 化身 NPC「阿誠師」，把採集到的物理聲音解碼、轉譯為有溫度的地方故事；畫面更以灰階、復古到 1970 年代的視覺濾鏡層層回溯，帶玩家走進城市的舊時光，逐步集成屬於村落的「核心音景圖鑑」。',
+      building:'學生不是聆聽既成的歷史，而是親自採集、解碼，並共同累積一份可擴充的「音景圖鑑」——一個能被持續補完、改進的知識物。聲音在這裡成為被建構的文化知識，呼應築知「知識是社群共構成果」的精神。' },
     { id:'g5', no:'04', title:'去去！假訊息走：數位黑魔法防禦術', en:'Defense Against the Digital Dark Arts',
       team:'吳靜炫、曾馨褕', domain:'數位素養 ・ 媒體識讀', tech:'MAGIC 沉浸式教學模組',
-      desc:'面對演算法同溫層、AI 深偽與假訊息，以沉浸式實戰課程打造學生的「數位免疫力」。透過 MAGIC 教學模組（Mindful／Analyze／Guard／Innovate／Citizenship），培養批判思辨與資安意識。' },
+      quote:'科技帶來便利，思辨帶來自由。',
+      lead:'《去去！假訊息走：數位黑魔法防禦術》是一套為國小高年級設計的沉浸式實戰課程，以闖關遊戲打造學生面對假訊息的「數位免疫力」。',
+      problem:'在演算法同溫層、AI 深偽與釣魚詐騙環伺的時代，學生既是資訊的重度使用者，也是最容易受傷的一群。生硬的資安宣導，難以抵禦真實世界的誘惑與陷阱。',
+      approach:'課程以自創的 MAGIC 五大模組推進——Mindful 覺知與反思、Analyze 分析與拆解、Guard 守護與防禦、Innovate 創新與實作、Citizenship 公民與實踐；學生在關卡中辨識深偽、拆解內容農場、管理個資隱私，通關後取得搜集到的「出口資訊」與證書。',
+      building:'Analyze（拆解）與 Innovate（創新實作）讓學生不再囫圇接收資訊，而是檢驗來源、重構判斷、產出自己的觀點——批判思辨正是知識翻新的核心。誠如作品所言：「做資訊的主人，而非演算法的受眾。」' },
     { id:'g8', no:'05', title:'迷失森林：同理心的真正力量', en:'The Lost Forest · The Power of Empathy',
-      team:'陳重睿、李震熙', domain:'社會情緒學習 ・ 同理心', tech:'STAR 敘事 ・ KNSH × Kuse AI',
-      desc:'一款以「同理心」為核心的敘事互動遊戲，運用 STAR 敘事框架與卡牌選擇機制，結合 KNSH × Kuse AI；引導學生從「急於解決問題」轉向「接納與陪伴」，在虛擬情境中練習換位思考。' },
+      team:'陳重睿、李震熙', domain:'社會情緒學習 ・ 同理心', tech:'STAR 敘事 ・ 卡牌機制 ・ KNSH × Kuse AI',
+      quote:'先接住情緒，再談解決。',
+      lead:'《迷失森林：同理心的真正力量》是一款以「同理心」為核心的敘事互動遊戲，以 STAR 敘事框架與卡牌選擇機制，帶學生走過一段關於理解與陪伴的旅程。',
+      problem:'面對他人的困境，孩子常急於「解決問題」，卻忽略了感受與陪伴。同理心難以用講述教會——它需要在一次次選擇與後果中被親身體會。',
+      approach:'遊戲以 STAR 敘事框架鋪陳情境，玩家透過「同理心卡牌」在關鍵時刻做出選擇，並對照「無罪宣判」與「深度同理」兩種回應的差異；並運用 KNSH × Kuse AI 生成情境與回饋，引導學生從「急於解決」轉向「接納與陪伴」。',
+      building:'同理心也是一種需要被「建構」的知識。透過卡牌選擇與情境試煉，學生反覆修正自己對他人處境的理解，把一次次的情感經驗，蓋成可遷移的社會情緒能力——這是築知在「人」的面向上的實踐。' },
     { id:'g6', no:'06', title:'無人知曉 × 赤壁：天塹棋', en:'A Solo Showcase of Two Works',
       team:'葉子寧（個人展出）', domain:'視覺小說 ・ 策略棋局', tech:'React + TypeScript ・ Minimax α-β 剪枝 ・ Canva',
-      desc:'兩件作品的個人展出。《無人知曉》以視覺小說形式重啟文學閱讀動機，將太宰治《人間失格》等經典融入互動敘事；《赤壁：天塹棋》則是一款以「赤壁」為題、支援人機對弈的策略棋局，以 Minimax α-β 剪枝打造三段難度 AI。' }
+      quote:'讀懂了文字，才算讀懂了文學。',
+      lead:'這是葉子寧的個人展出，收錄兩件題材迥異、卻同樣把「理解」變成主動建構的作品：以視覺小說重啟文學閱讀的《無人知曉》，以及一款支援人機對弈的策略棋局《赤壁：天塹棋》。',
+      problem:'文學常被當成「讀過就好」的文字，學生難以走進角色的內心；而策略思考與演算法等抽象概念，也少有讓人「親手做出來」的機會。',
+      approach:'《無人知曉》以視覺小說的形式，將太宰治《人間失格》《奔跑吧，美樂斯》等經典化為可互動的敘事，讓讀者在選擇與對話中與文本相遇。《赤壁：天塹棋》則以 React + TypeScript 從零打造 8×10 棋盤，並以 Minimax α-β 剪枝（depth-2）實作三段難度的 AI 對手，棋子美術以 Canva 完成，於 GitHub Pages 即時可玩。',
+      building:'兩件作品都把「理解」翻轉為「建造」：讀者在視覺小說裡主動與文本對話，玩家在棋局裡推演與修正策略；尤其親手以演算法「蓋出」一個會思考的對手，正是把知識化為可運作系統的最佳示範——築知的字面與精神，都在這裡。' }
   ];
   function poster(id){ return 'assets/posters/' + id + '.jpg'; }
   function full(id){ return 'assets/posters/full/' + id + '.jpg'; }
@@ -160,12 +184,16 @@
         '<div class="label__no"><small>Nº</small>' + w.no + '</div>' +
         '<h1 class="label__title" style="font-size:clamp(1.9rem,4vw,2.9rem)">' + w.title + '</h1>' +
         '<p class="label__en">' + w.en + '</p>' +
+        (w.quote ? '<p class="work__quote">「' + w.quote + '」</p>' : '') +
         '<ul class="label__meta">' +
           '<li><span class="k">Team</span><span class="v">' + w.team + '</span></li>' +
           '<li><span class="k">領域</span><span class="v">' + w.domain + '</span></li>' +
           '<li><span class="k">技術</span><span class="v">' + w.tech + '</span></li>' +
         '</ul>' +
-        '<p class="work__desc">' + w.desc + '</p>' +
+        '<p class="work__lead">' + w.lead + '</p>' +
+        '<section class="work__sec"><h2>教學現場的提問</h2><p>' + w.problem + '</p></section>' +
+        '<section class="work__sec"><h2>設計與做法</h2><p>' + w.approach + '</p></section>' +
+        '<section class="work__building"><span class="seal" style="--s:46px">築</span><div class="work__building-body"><h2>與「築知」的呼應</h2><p>' + w.building + '</p></div></section>' +
       '</div>';
     var prev = WORKS[(i - 1 + WORKS.length) % WORKS.length], next = WORKS[(i + 1) % WORKS.length];
     var wnav = document.getElementById('workNav');

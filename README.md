@@ -9,7 +9,6 @@
 - `works.html` — 專題作品總覽（六件）
 - `work.html?id=g1…g8,g6` — 各作品專頁（含上一件／下一件導覽）
 - `gallery.html` — 展場紀實（GSAP 膠卷放映廳・65 幀）
-- `visit.html` — 參觀資訊
 
 ## 共用檔
 

@@ -209,6 +209,31 @@ button{ font:inherit; color:inherit; background:none; border:none; cursor:pointe
 .work-nav a:hover b{ color:var(--cinnabar); }
 .work-nav__next{ text-align:right; }
 .work-nav__home{ font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-faint); }
+.work__quote{ font-family:var(--serif); font-weight:300; font-size:clamp(1.2rem,2vw,1.55rem); line-height:1.6; color:var(--cinnabar); margin:1.1rem 0 1.5rem; }
+.work__lead{ font-size:clamp(1.05rem,1.25vw,1.22rem); line-height:2; color:var(--ink); margin:1.5rem 0; }
+.work__sec{ margin:1.8rem 0; }
+.work__sec h2,
+.work__building h2{ font-family:var(--label); font-weight:400; font-size:.7rem; letter-spacing:.24em; text-transform:uppercase; color:var(--cinnabar); margin-bottom:.7rem; display:flex; align-items:center; gap:.8em; }
+.work__sec h2::before{ content:""; width:22px; height:1px; background:var(--cinnabar); opacity:.6; }
+.work__sec p{ font-size:1rem; line-height:1.95; color:var(--ink-soft); }
+.work__building{ display:flex; gap:1.3rem; align-items:flex-start; margin-top:2.4rem; padding:clamp(1.4rem,2.5vw,2rem);
+  background:linear-gradient(180deg, rgba(176,64,42,.06), rgba(176,64,42,.02)); border:1px solid rgba(176,64,42,.2); border-radius:2px; }
+.work__building .seal{ flex:none; }
+.work__building h2{ margin-bottom:.5rem; }
+.work__building p{ font-size:1rem; line-height:1.95; color:var(--ink); }
+
+/* 關於頁：築知理念 + 版本記 */
+.concept{ max-width:1180px; margin:0 auto; padding:clamp(3rem,7vh,5rem) var(--pad) clamp(2rem,5vh,4rem); border-top:1px solid var(--line); }
+.concept__lead{ max-width:62ch; font-size:clamp(1.05rem,1.3vw,1.25rem); line-height:2; color:var(--ink); margin:1.4rem 0 0; }
+.concept__grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr)); gap:clamp(1.6rem,3vw,2.6rem); margin-top:clamp(2.5rem,5vh,3.5rem); }
+.principle__no{ font-family:var(--display); font-style:italic; font-size:1.3rem; color:var(--cinnabar); opacity:.8; }
+.principle__zh{ font-family:var(--serif); font-weight:500; font-size:clamp(1.2rem,1.8vw,1.45rem); letter-spacing:.04em; margin:.5rem 0 .1rem; }
+.principle__en{ font-family:var(--display); font-style:italic; color:var(--ink-faint); font-size:.95rem; margin-bottom:.7rem; }
+.principle p{ font-size:.95rem; line-height:1.9; color:var(--ink-soft); }
+.colophon{ max-width:1180px; margin:0 auto; padding:clamp(2rem,4vh,3rem) var(--pad) clamp(5rem,11vh,8rem); }
+.colophon__grid{ border-top:1px solid var(--line); display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr)); gap:1.6rem 2.5rem; padding-top:clamp(2rem,4vh,3rem); }
+.colophon__grid .k{ font-family:var(--label); font-weight:400; font-size:.66rem; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-faint); display:block; margin-bottom:.5em; }
+.colophon__grid .v{ font-family:var(--serif); font-size:1.02rem; color:var(--ink); line-height:1.6; }
 
 /* ════════════════════════════════════════════════════
    展場紀實 / 膠卷放映廳（gallery.html）
