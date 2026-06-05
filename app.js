@@ -283,10 +283,52 @@
     window.addEventListener('load', function(){ measure(); ScrollTrigger.refresh(); });
   }
 
+  /* ── 首頁：築知 筆畫書寫 ── */
+  function initHeroDraw(){
+    var wrap = document.getElementById('heroDraw');
+    var fin = document.getElementById('heroFinal');
+    var title = document.querySelector('.hero__title');
+    if (!wrap || !fin || reduce || !window.HanziWriter) return;   // 保底：顯示楷體定稿
+    var fs = parseFloat(getComputedStyle(title).fontSize) || 150;
+    var size = Math.round(Math.min(fs, (window.innerWidth * 0.8) / 2));
+    fin.style.opacity = '0';
+    wrap.style.opacity = '1';
+    var done = false;
+    function finish(){
+      if (done) return; done = true;
+      fin.style.transition = 'opacity .6s var(--ease)';
+      wrap.style.transition = 'opacity .6s var(--ease)';
+      fin.style.opacity = '1';
+      wrap.style.opacity = '0';
+      setTimeout(function(){ wrap.style.display = 'none'; }, 700);
+    }
+    var insts;
+    try {
+      insts = ['築', '知'].map(function(c){
+        var box = document.createElement('span'); box.className = 'hero__glyph'; wrap.appendChild(box);
+        return HanziWriter.create(box, c, {
+          width: size, height: size, padding: Math.round(size * 0.04),
+          showOutline: false, showCharacter: false,
+          strokeColor: '#1d1b17', strokeAnimationSpeed: 2.2, delayBetweenStrokes: 24,
+          onLoadCharDataError: function(){ finish(); }
+        });
+      });
+    } catch (e) { finish(); return; }
+    function draw(i){
+      if (done) return;
+      if (i >= insts.length){ finish(); return; }
+      try { insts[i].animateCharacter({ onComplete: function(){ draw(i + 1); } }); }
+      catch (e) { finish(); }
+    }
+    setTimeout(function(){ draw(0); }, 480);
+    setTimeout(function(){ if (!done) finish(); }, 9000);        // 逾時保底
+  }
+
   /* ── 啟動 ── */
   if (PAGE === 'works') renderWorks();
   if (PAGE === 'work') renderWork();
   if (PAGE === 'gallery') renderReel();
+  if (PAGE === 'home') initHeroDraw();
   observeReveals();
   onScroll();
   initSmoothScroll();
