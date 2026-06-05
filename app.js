@@ -283,26 +283,30 @@
     window.addEventListener('load', function(){ measure(); ScrollTrigger.refresh(); });
   }
 
-  /* ── 首頁：築知 筆畫書寫 ── */
+  /* ── 首頁：築知 筆畫書寫（楷體常駐；資料就緒才書寫，避免空白與重疊） ── */
   function initHeroDraw(){
     var wrap = document.getElementById('heroDraw');
     var fin = document.getElementById('heroFinal');
     var title = document.querySelector('.hero__title');
-    if (!wrap || !fin || reduce || !window.HanziWriter) return;   // 保底：顯示楷體定稿
+    if (!wrap || !fin || reduce || !window.HanziWriter) return;   // 保底：直接顯示楷體
     var fs = parseFloat(getComputedStyle(title).fontSize) || 150;
     var size = Math.round(Math.min(fs, (window.innerWidth * 0.8) / 2));
-    fin.style.opacity = '0';
-    wrap.style.opacity = '1';
-    var done = false;
-    function finish(){
-      if (done) return; done = true;
-      fin.style.transition = 'opacity .6s var(--ease)';
-      wrap.style.transition = 'opacity .6s var(--ease)';
-      fin.style.opacity = '1';
-      wrap.style.opacity = '0';
-      setTimeout(function(){ wrap.style.display = 'none'; }, 700);
+    // 楷體（fin）預設可見（CSS opacity 1）→ 載入期間絕不空白
+    var ready = 0, started = false, failed = false, insts;
+    function keepFinal(){            // 保底：維持楷體、不書寫
+      if (started || failed) return; failed = true; wrap.style.display = 'none';
     }
-    var insts;
+    function startDraw(){            // 兩字資料皆就緒，才隱藏楷體並開始書寫
+      if (started || failed || ready < 2) return;
+      started = true;
+      fin.style.opacity = '0';
+      wrap.style.opacity = '1';
+      (function draw(i){
+        if (i >= insts.length) return;            // 寫完保留筆畫，不交叉淡入（避免重疊）
+        try { insts[i].animateCharacter({ onComplete: function(){ draw(i + 1); } }); }
+        catch (e) { fin.style.opacity = '1'; wrap.style.display = 'none'; }  // 書寫失敗 → 回楷體
+      })(0);
+    }
     try {
       insts = ['築', '知'].map(function(c){
         var box = document.createElement('span'); box.className = 'hero__glyph'; wrap.appendChild(box);
@@ -310,18 +314,12 @@
           width: size, height: size, padding: Math.round(size * 0.04),
           showOutline: false, showCharacter: false,
           strokeColor: '#1d1b17', strokeAnimationSpeed: 2.2, delayBetweenStrokes: 24,
-          onLoadCharDataError: function(){ finish(); }
+          onLoadCharDataSuccess: function(){ ready++; startDraw(); },
+          onLoadCharDataError: keepFinal
         });
       });
-    } catch (e) { finish(); return; }
-    function draw(i){
-      if (done) return;
-      if (i >= insts.length){ finish(); return; }
-      try { insts[i].animateCharacter({ onComplete: function(){ draw(i + 1); } }); }
-      catch (e) { finish(); }
-    }
-    setTimeout(function(){ draw(0); }, 480);
-    setTimeout(function(){ if (!done) finish(); }, 9000);        // 逾時保底
+    } catch (e) { keepFinal(); return; }
+    setTimeout(function(){ if (!started) keepFinal(); }, 4500);   // 資料太慢 → 維持楷體
   }
 
   /* ── 啟動 ── */
